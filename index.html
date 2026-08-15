@@ -1,24 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -199,10 +178,9 @@
 </head>
 <body>
 
-
 <div class="container">
     <div class="header-actions">
-         <h1>📋 Посещаемость рабочего вечернего собрания</h1>
+         <h1>📋 Посещаемость рабочего вечернего собрания группы Мира</h1>
         <a href="index.html" class="back-link">← На главную</a>
     </div>
 
@@ -213,7 +191,6 @@
         </table>
     </div>
 
-   
     <div class="notice-board">
         <h2>📌 Отчеты рабочих собраний</h2>
         <div class="day-tiles-container" id="dayTilesContainer"></div>
@@ -221,7 +198,6 @@
             <div class="notice-list" id="noticeList"></div>
         </div>
     </div>
-
 
     <div class="central-wrapper">
         <button class="lock-button" id="lockBtn">
@@ -233,9 +209,8 @@
         <div id="adminPanel" class="info-panel">
             <div class="info-title">🗝️ Панель управления</div>
              <div class="btn-group">
-        <button class="btn" id="addDayBtn">➕ Добавить день</button>
-    </div>
-    
+                <button class="btn" id="addDayBtn">➕ Добавить день</button>
+            </div>
             <button id="enableEditBtn" class="edit-btn success">✏️ Включить режим редактирования</button>
             <button id="disableEditBtn" class="edit-btn danger" style="display:none">🔒 Выключить режим</button>
             <button id="saveDataBtn" class="edit-btn">💾 Сохранить изменения в облако</button>
@@ -257,17 +232,12 @@
     </div>
 </div>
 
+<!-- Модалка для плиток (в зависимости от режима) -->
 <div class="modal-overlay" id="dayModal">
     <div class="modal-card">
         <h3 id="modalTitle">📅 Добавить / Редактировать день-плитку</h3>
-        <label for="modalDayInput">Дата (день недели или число)</label>
-        <input type="text" id="modalDayInput" placeholder="например: четверг 12.09" />
-        <label for="modalTextInput">Текст отчета по этому дню</label>
-        <textarea id="modalTextInput" placeholder="Подробности, отчет..."></textarea>
-        <div class="modal-actions">
-            <button class="btn btn-cancel" id="modalCancelBtn">Отмена</button>
-            <button class="btn" id="modalSaveBtn">💾 Сохранить</button>
-        </div>
+        <div id="modalBodyContent"></div>
+        <div class="modal-actions" id="modalActions"></div>
     </div>
 </div>
 
@@ -282,7 +252,6 @@
 
 <script>
     (function() {   
-        
         const BASE_SERVICE_KEYS = ["Ведущий", "Чайханщик", "Уборщик"];
         const OTHER_SERVICE_KEYS = [
             "Закупщик", "Спикерхантер", "ПБУ", "ПГО", "ПСО", "Литком", 
@@ -296,8 +265,7 @@
         let isUnlocked = false;
         let currentEditTileIndex = -1; 
         
-        // Состояние открытых родительских кнопок. 
-        // Если 'Ведущий' открыт, показываем Ведущий Вт...Вс.
+        // Состояние открытых родительских кнопок
         let openParents = {};
 
         // Функция для получения полного списка всех ключей строк
@@ -388,13 +356,6 @@
                     }
                 }
 
-                // Формируем строку
-                if (isHidden) {
-                    // Скрываем строку полностью (просто не добавляем её в HTML, если она не Вт-Вс и не открыта)
-                    // Мы должны её добавить, но с классом .sub-row. 
-                    // Но в нашей логике они идут подряд, поэтому лучше использовать CSS классы.
-                }
-
                 // Определяем класс для строки
                 let rowClass = "";
                 if (isParent) {
@@ -462,7 +423,6 @@
             // Обработчики кликов по родительским заголовкам (Ведущий Пн и т.д.)
             document.querySelectorAll('tr.clickable-header td:first-child').forEach(td => {
                 td.addEventListener('click', function() {
-                    const row = this.parentElement;
                     const roleText = this.innerText.trim(); // "Ведущий Пн"
                     const roleName = roleText.split(" ")[0]; // "Ведущий"
                     
@@ -515,7 +475,7 @@
         function renderNotices() {
             const container = document.getElementById('noticeList');
             if (!notices.length) {
-                container.innerHTML = `<div class="empty-notice">📭 Пока нет заметок.</div>`;
+                container.innerHTML = `<div class="empty-notice"></div>`;
                 return;
             }
             let html = '';
@@ -686,54 +646,102 @@
 
         function setupModals() {
             const modal = document.getElementById('dayModal');
-            const dayInput = document.getElementById('modalDayInput');
-            const textInput = document.getElementById('modalTextInput');
             const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBodyContent');
+            const modalActions = document.getElementById('modalActions');
+            const addDayBtn = document.getElementById('addDayBtn');
 
-            function openAddModal() {
+            // Обработчик открытия формы добавления новой плитки
+            addDayBtn.addEventListener('click', function() {
                 currentEditTileIndex = -1;
-                modalTitle.innerText = '📅 Добавить день-плитку';
-                dayInput.value = '';
-                textInput.value = '';
+                openEditModal(false);
+            });
+
+            // Универсальная функция открытия модалки
+            function openEditModal(isEdit) {
                 modal.classList.add('active');
+
+                if (isEdit) {
+                    // === РЕЖИМ РЕДАКТИРОВАНИЯ СУЩЕСТВУЮЩЕЙ ===
+                    const data = dayTiles[currentEditTileIndex];
+                    modalTitle.innerText = '✏️ Редактировать день-плитку';
+                    modalBody.innerHTML = `
+                        <label for="modalDayInput" style="color:#ffdd99; font-weight:600; display:block; margin-top:10px; margin-bottom:4px;">Дата</label>
+                        <input type="text" id="modalDayInput" value="${data.date || ''}" style="width:100%; padding:12px 16px; background:#0f1a24; border:2px solid #4a6a8a; border-radius:16px; color:#fff; font-size:15px;" />
+                        <label for="modalTextInput" style="color:#ffdd99; font-weight:600; display:block; margin-top:10px; margin-bottom:4px;">Текст отчета</label>
+                        <textarea id="modalTextInput" style="width:100%; min-height:100px; padding:12px 16px; background:#0f1a24; border:2px solid #4a6a8a; border-radius:16px; color:#fff; font-size:15px; resize:vertical;">${data.report || ''}</textarea>
+                    `;
+                    modalActions.innerHTML = `
+                        <button class="btn btn-cancel" id="modalCancelBtn">Отмена</button>
+                        <button class="btn" id="modalSaveBtn">💾 Сохранить</button>
+                    `;
+                } else {
+                    // === РЕЖИМ ДОБАВЛЕНИЯ НОВОЙ ===
+                    modalTitle.innerText = '📅 Добавить день-плитку';
+                    modalBody.innerHTML = `
+                        <label for="modalDayInput" style="color:#ffdd99; font-weight:600; display:block; margin-top:10px; margin-bottom:4px;">Дата</label>
+                        <input type="text" id="modalDayInput" value="" placeholder="например: четверг 12.09" style="width:100%; padding:12px 16px; background:#0f1a24; border:2px solid #4a6a8a; border-radius:16px; color:#fff; font-size:15px;" />
+                        <label for="modalTextInput" style="color:#ffdd99; font-weight:600; display:block; margin-top:10px; margin-bottom:4px;">Текст отчета</label>
+                        <textarea id="modalTextInput" style="width:100%; min-height:100px; padding:12px 16px; background:#0f1a24; border:2px solid #4a6a8a; border-radius:16px; color:#fff; font-size:15px; resize:vertical;" placeholder="Подробности, отчет..."></textarea>
+                    `;
+                    modalActions.innerHTML = `
+                        <button class="btn btn-cancel" id="modalCancelBtn">Отмена</button>
+                        <button class="btn" id="modalSaveBtn">💾 Сохранить</button>
+                    `;
+                }
+
+                // Обработчики кнопок внутри открытой модалки
+                document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('active'));
+                document.getElementById('modalSaveBtn').addEventListener('click', function() {
+                    const dateInput = document.getElementById('modalDayInput').value.trim();
+                    const textInput = document.getElementById('modalTextInput').value.trim();
+                    if (!dateInput) { alert('Введите дату'); return; }
+                    if (!textInput) { alert('Введите текст отчета'); return; }
+
+                    if (currentEditTileIndex !== -1) {
+                        // Сохранение существующего
+                        dayTiles[currentEditTileIndex].date = dateInput;
+                        dayTiles[currentEditTileIndex].report = textInput;
+                        showToast('✅ Заметка обновлена!');
+                    } else {
+                        // Сохранение нового
+                        dayTiles.push({ date: dateInput, report: textInput });
+                        showToast('✅ Заметка добавлена!');
+                    }
+                    
+                    saveLocalData();
+                    renderDayTiles();
+                    modal.classList.remove('active');
+                });
             }
 
+            // Функция, вызываемая при клике на существующую плитку
             window.openEditTileModal = function(index) {
                 currentEditTileIndex = index;
-                modalTitle.innerText = '✏️ Редактировать день-плитку';
-                dayInput.value = dayTiles[index].date || '';
-                textInput.value = dayTiles[index].report || '';
-                modal.classList.add('active');
+                
+                if (isUnlocked) {
+                    // Если режим редактирования включен — открываем редактор
+                    openEditModal(true);
+                } else {
+                    // Если режим ВЫКЛ — открываем просмотр
+                    const data = dayTiles[index];
+                    modalTitle.innerText = '📄 Просмотр отчета';
+                    modalBody.innerHTML = `
+                        <div style="color:#ffd966; font-weight:bold; text-align:center; margin-bottom:15px;">${data.date || '—'}</div>
+                        <div style="color:#e8e8e8; line-height:1.6; white-space:pre-wrap; background:rgba(0,0,0,0.3); padding:16px; border-radius:12px; border-left:4px solid #ffd966;">${data.report || 'Нет текста'}</div>
+                    `;
+                    modalActions.innerHTML = `
+                        <button class="btn btn-cancel" id="modalCancelBtn">Закрыть</button>
+                    `;
+                    modal.classList.add('active');
+
+                    document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('active'));
+                }
             };
 
-            document.getElementById('addDayBtn').addEventListener('click', openAddModal);
-            document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('active'));
-            modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('active'); });
-            
-            document.getElementById('modalSaveBtn').addEventListener('click', function() {
-                const date = dayInput.value.trim();
-                const text = textInput.value.trim();
-                if (!date) { alert('Введите дату'); return; }
-                if (!text) { alert('Введите текст отчета'); return; }
-
-                if (currentEditTileIndex !== -1) {
-                    dayTiles[currentEditTileIndex].date = date;
-                    dayTiles[currentEditTileIndex].report = text;
-                } else {
-                    dayTiles.push({ date, report: text });
-                }
-                
-                saveLocalData();
-                renderDayTiles();
-                modal.classList.remove('active');
-                showToast(currentEditTileIndex !== -1 ? '✅ Заметка обновлена!' : '✅ Заметка добавлена!');
-            });
-
-            document.getElementById('reportCloseBtn').addEventListener('click', function() {
-                document.getElementById('reportModal').classList.remove('active');
-            });
-            document.getElementById('reportModal').addEventListener('click', function(e) {
-                if (e.target === this) this.classList.remove('active');
+            // Закрытие по клику на фон
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) modal.classList.remove('active');
             });
         }
 
