@@ -23,31 +23,54 @@
             box-shadow: 0 25px 45px rgba(0,0,0,0.3);
             overflow-x: auto;
         }
-        h1 { color: #ffd966; font-size: clamp(24px, 4vw, 36px); margin-bottom: 20px; text-align: center; letter-spacing: 1px; }
+        h1 {
+            color: #ffd966;
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
         .header-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
-        .back-link { color: #ffd966; text-decoration: none; font-weight: 600; padding: 8px 18px; border: 1px solid #ffd966; border-radius: 40px; transition: 0.2s; }
+        .back-link {
+            color: #ffd966; text-decoration: none; font-weight: 600;
+            padding: 8px 18px; border: 1px solid #ffd966; border-radius: 40px; transition: 0.2s;
+        }
         .back-link:hover { background: #ffd966; color: #0a0f1e; }
-        
+
+        /* Основная таблица */
         .table-wrap { overflow-x: auto; margin: 16px 0 0; border-radius: 20px; border: 1px solid rgba(255, 217, 102, 0.2); }
-        table { width: 100%; border-collapse: collapse; background: rgba(20, 30, 45, 0.6); font-size: 14px; min-width: 700px; }
-        th { background: linear-gradient(145deg, #1e2a3a, #0f1a24); color: #ffd966; font-weight: 700; padding: 12px 8px; border: 1px solid rgba(255, 217, 102, 0.25); text-align: center; position: sticky; top: 0; z-index: 10; }
+        table {
+            width: 100%; border-collapse: collapse; background: rgba(20, 30, 45, 0.6);
+            font-size: 14px; min-width: 700px;
+        }
+        th {
+            background: linear-gradient(145deg, #1e2a3a, #0f1a24);
+            color: #ffd966; font-weight: 700; padding: 12px 8px;
+            border: 1px solid rgba(255, 217, 102, 0.25); text-align: center;
+            position: sticky; top: 0; z-index: 10;
+        }
         th:first-child { min-width: 140px; text-align: left; padding-left: 16px; position: sticky; left: 0; z-index: 11; background: #1e2a3a; }
-        td { padding: 10px 6px; border: 1px solid rgba(255, 217, 102, 0.15); text-align: center; vertical-align: middle; background: rgba(15, 25, 45, 0.4); }
-        td:first-child { font-weight: 600; color: #ffdd99; text-align: left; padding-left: 16px; background: rgba(20, 30, 45, 0.6); border-right: 2px solid rgba(255, 217, 102, 0.3); position: sticky; left: 0; z-index: 5; }
+        td {
+            padding: 10px 6px; border: 1px solid rgba(255, 217, 102, 0.15);
+            text-align: center; vertical-align: middle; background: rgba(15, 25, 45, 0.4);
+        }
+        td:first-child {
+            font-weight: 600; color: #ffdd99; text-align: left; padding-left: 16px;
+            background: rgba(20, 30, 45, 0.6); border-right: 2px solid rgba(255, 217, 102, 0.3);
+            position: sticky; left: 0; z-index: 5;
+        }
         
-        .clickable-header { color: #ffd966 !important; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; transition: 0.2s; }
+        .clickable-header {
+            color: #ffd966 !important;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: 0.2s;
+        }
         .clickable-header:hover { background: rgba(255, 217, 102, 0.1); }
 
         .cell-free { background: linear-gradient(145deg, #1e7a4a, #0f5e38); color: #fff; font-weight: bold; border-radius: 12px; padding: 6px 4px; display: inline-block; min-width: 40px; cursor: default; }
         .cell-occupied { color: #ccc; padding: 6px 4px; display: inline-block; min-width: 40px; }
-
-        .editable-cell select { background: #0f1a24; color: #fff; border: 2px solid #4a6a8a; border-radius: 12px; padding: 6px 10px; font-size: 14px; font-weight: bold; text-align: center; width: 100%; outline: none; cursor: pointer; }
-        .editable-cell select:focus { border-color: #ffd966; }
-        .editable-cell select option { background: #1a2a3a; color: #fff; }
-        
-        .status-P { color: #4CAF50; font-weight: bold; }
-        .status-O { color: #f44336; font-weight: bold; }
-        .status-U { color: #ff9800; font-weight: bold; }
 
         .sub-row { display: none; }
         .sub-row.visible { display: table-row; }
@@ -56,14 +79,18 @@
         .sub-row .cell-occupied { font-size: 12px; }
 
         .btn-group { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin: 24px 0 18px; }
-        .btn { background: linear-gradient(45deg, #ffb347, #ff8c00); border: none; padding: 14px 32px; font-size: 18px; font-weight: 700; border-radius: 60px; cursor: pointer; color: #0a0f1e; box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3); transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn {
+            background: linear-gradient(45deg, #ffb347, #ff8c00); border: none; padding: 14px 32px;
+            font-size: 18px; font-weight: 700; border-radius: 60px; cursor: pointer;
+            color: #0a0f1e; box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+            transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(255, 140, 0, 0.5); }
         .btn:active { transform: translateY(2px); }
-        .btn-save-cloud { background: linear-gradient(45deg, #27ae60, #2ecc71); color: #fff; box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3); }
-        .btn-save-cloud:hover { box-shadow: 0 12px 28px rgba(46, 204, 113, 0.5); }
-        .btn-danger { background: linear-gradient(45deg, #c0392b, #e74c3c); color: #fff; box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3); }
-        .btn-danger:hover { box-shadow: 0 12px 28px rgba(231, 76, 60, 0.5); }
+        .btn-secondary { background: linear-gradient(45deg, #4a6fa5, #2c4a7a); color: #fff; box-shadow: 0 8px 20px rgba(42, 85, 150, 0.3); }
+        .btn-secondary:hover { box-shadow: 0 12px 28px rgba(42, 85, 150, 0.5); }
 
+        /* Доска заметок */
         .notice-board { margin-top: 30px; border-top: 2px solid rgba(255, 217, 102, 0.2); padding-top: 24px; }
         .notice-board h2 { color: #ffd966; font-size: 22px; margin-bottom: 16px; text-align: center; }
         .notice-list { display: flex; flex-direction: column; gap: 12px; max-width: 900px; margin: 0 auto; }
@@ -74,6 +101,7 @@
         .notice-del:hover { background: rgba(255, 70, 70, 0.4); }
         .empty-notice { color: #888; text-align: center; padding: 24px; font-style: italic; }
 
+        /* Модалки */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); z-index: 1000; justify-content: center; align-items: center; }
         .modal-overlay.active { display: flex; }
         .modal-card { background: #1a2a3a; border-radius: 32px; padding: 32px; max-width: 560px; width: 92%; border: 2px solid #ffd966; box-shadow: 0 30px 60px rgba(0,0,0,0.6); position: relative; }
@@ -101,14 +129,68 @@
         .day-tile:hover { border-color: #ffd966; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(255, 217, 102, 0.2); }
         .day-tile .small-date { font-size: 11px; color: #aaa; font-weight: normal; }
 
-        .footer-lock { margin-top: 20px; border-top: 2px solid rgba(255, 217, 102, 0.2); padding-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-        .lock-btn { background: transparent; border: 2px solid #ffd966; color: #ffd966; border-radius: 50px; padding: 8px 20px; font-size: 16px; cursor: pointer; transition: 0.2s; font-weight: 600; }
-        .lock-btn:hover { background: #ffd966; color: #0a0f1e; }
-        .lock-btn.unlocked { border-color: #4CAF50; color: #4CAF50; background: rgba(76, 175, 80, 0.1); }
-        .lock-btn.unlocked:hover { background: #4CAF50; color: #fff; }
+        /* ===== АДМИН ПАНЕЛЬ (как в вашем коде) ===== */
+        .central-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 550px;
+            margin: 20px auto 0;
+        }
+        .lock-button {
+            background: radial-gradient(circle at 30% 25%, #f6e7c5, #deb887);
+            border: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+        }
+        .lock-svg { width: 50px; height: 50px; }
+        .info-panel {
+            background: rgba(255, 248, 225, 0.95);
+            border-radius: 42px;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            display: none;
+        }
+        .info-panel.visible { display: block; }
+        .info-title { font-size: 24px; color: #7a5c2e; margin-bottom: 15px; }
+        .edit-btn {
+            background: #d4af37;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px;
+        }
+        .edit-btn.danger { background: #f44336; color: white; }
+        .edit-btn.success { background: #4CAF50; color: white; }
+        .edit-status { margin-top: 15px; padding: 10px; background: #333; border-radius: 30px; color: #ffd966; }
+        .sync-status { font-size: 12px; margin-top: 10px; color: #666; }
 
-        .admin-actions { display: none; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 10px; }
-        .admin-actions.active { display: flex; }
+        .modal-password {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center; z-index: 5000;
+        }
+        .modal-password.active { display: flex; }
+        .modal-password-card {
+            background: #fef7e0; border-radius: 48px; padding: 30px; width: 90%; max-width: 350px; text-align: center;
+        }
+        .modal-password-card h3 { color: #7a5c2e; margin-bottom: 20px; }
+        .password-input {
+            width: 100%; padding: 14px; border: 2px solid #e4c37b; border-radius: 60px; text-align: center; font-size: 18px; margin: 15px 0;
+        }
+        .modal-buttons { display: flex; gap: 10px; justify-content: center; }
+        .modal-btn { padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; font-weight: bold; }
+        .modal-btn.primary { background: #d4af37; }
+        .modal-btn.secondary { background: #ccc; }
 
         @media (max-width: 700px) { table { font-size: 12px; } th:first-child { min-width: 100px; } td { padding: 6px 4px; } .btn { padding: 10px 18px; font-size: 15px; } .modal-card { padding: 20px; } .report-modal-card { padding: 20px; } }
         @media (max-width: 500px) { table { font-size: 10px; min-width: 500px; } .cell-free, .cell-occupied { min-width: 28px; padding: 4px 2px; } .btn { padding: 8px 12px; font-size: 13px; } }
@@ -122,17 +204,20 @@
         <a href="index.html" class="back-link">← На главную</a>
     </div>
 
-    <div class="table-wrap" id="tableWrap">
+    <!-- Основная таблица -->
+    <div class="table-wrap">
         <table id="serviceTable">
             <thead id="tableHead"><tr><th>Служение</th></tr></thead>
             <tbody id="tableBody"></tbody>
         </table>
     </div>
 
+    <!-- Кнопка добавления дня -->
     <div class="btn-group">
         <button class="btn" id="addDayBtn">➕ Добавить день</button>
     </div>
 
+    <!-- Доска заметок -->
     <div class="notice-board">
         <h2>📌 Заметки по дням</h2>
         <div class="day-tiles-container" id="dayTilesContainer"></div>
@@ -141,18 +226,43 @@
         </div>
     </div>
 
-    <div class="footer-lock">
-        <button class="lock-btn" id="lockBtn">🔒 Редактировать</button>
-        <div class="admin-actions" id="adminActions">
-            <button class="btn btn-save-cloud" id="saveCloudBtn">☁️ Сохранить в облако</button>
-            <button class="btn btn-danger" id="resetLocalBtn">🗑️ Очистить локальные</button>
+    <!-- ===== АДМИН ПАНЕЛЬ (ЗАМОЧЕК) ===== -->
+    <div class="central-wrapper">
+        <button class="lock-button" id="lockBtn">
+            <svg class="lock-svg" viewBox="0 0 24 24" fill="none">
+                <path d="M17 9V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V9H6C4.89543 9 4 9.89543 4 11V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V11C20 9.89543 19.1046 9 18 9H17ZM9 7C9 5.34315 10.3431 4 12 4C13.6569 4 15 5.34315 15 7V9H9V7Z" fill="#5C3E1F" />
+                <path d="M12 14C10.8954 14 10 14.8954 10 16C10 17.1046 10.8954 18 12 18C13.1046 18 14 17.1046 14 16C14 14.8954 13.1046 14 12 14Z" fill="#E8C87A" />
+            </svg>
+        </button>
+        <div id="adminPanel" class="info-panel">
+            <div class="info-title">🗝️ Панель управления</div>
+            <button id="enableEditBtn" class="edit-btn success">✏️ Включить режим редактирования</button>
+            <button id="disableEditBtn" class="edit-btn danger" style="display:none">🔒 Выключить режим</button>
+            <button id="saveDataBtn" class="edit-btn">💾 Сохранить изменения в облако</button>
+            <button id="resetDataBtn" class="edit-btn">🔄 Сбросить всё</button>
+            <div id="editModeStatus" class="edit-status">⚙️ Режим редактирования: ВЫКЛ</div>
+            <div id="syncStatus" class="sync-status"></div>
         </div>
     </div>
 </div>
 
+<!-- Модалка пароля -->
+<div id="passwordModal" class="modal-password">
+    <div class="modal-password-card">
+        <h3>🔒 Введите пароль</h3>
+        <input type="password" id="passwordInput" class="password-input" placeholder="Введите пароль">
+        <div class="modal-buttons">
+            <button id="submitPassword" class="modal-btn primary">Открыть</button>
+            <button id="closePasswordModal" class="modal-btn secondary">Отмена</button>
+        </div>
+        <div id="passwordError" style="color:red; margin-top:10px"></div>
+    </div>
+</div>
+
+<!-- Модалка добавления дня -->
 <div class="modal-overlay" id="dayModal">
     <div class="modal-card">
-        <h3>📅 Добавить день-плитку</h3>
+        <h3 id="modalTitle">📅 Добавить день-плитку</h3>
         <label for="modalDayInput">Дата (день недели или число)</label>
         <input type="text" id="modalDayInput" placeholder="например: четверг 12.09" />
         <label for="modalTextInput">Текст отчета по этому дню</label>
@@ -164,6 +274,7 @@
     </div>
 </div>
 
+<!-- Модалка просмотра отчета -->
 <div class="report-modal-overlay" id="reportModal">
     <div class="report-modal-card">
         <button class="report-close-btn" id="reportCloseBtn">✕</button>
@@ -175,16 +286,13 @@
 
 <script>
     (function() {
-        const ADMIN_PASSWORD = "1234"; 
-
-        // ⚠️ ВСТАВЬТЕ СЮДА ДАННЫЕ ВАШЕГО GITHUB РЕПОЗИТОРИЯ
-        const REPO_OWNER = "prudexxx";
-        const REPO_NAME = "otchet";
-        // ТОКЕН УДАЛЕН. ДЛЯ РАБОТЫ ОБЛАКА ЗАПУСКАЙТЕ ЭТОТ ФАЙЛ ЛОКАЛЬНО (ПРОСТО ОТКРЫВ ЕГО В БРАУЗЕРЕ)
-        const TOKEN = ""; 
-        const DATA_FILE_PATH = "data.json";
-        // ============================================
-
+        // ================================================
+        // 1. КОНСТАНТЫ И ИНИЦИАЛИЗАЦИЯ
+        // ================================================
+        const ADMIN_PASSWORD = "1234"; // Пароль для админки
+        // ТА ЖЕ ССЫЛКА, ЧТО И В ВАШЕМ ОСНОВНОМ КОДЕ!
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTIvFS5UTEypdqxN8OXw4pke0DbAiSVmfizE1CVegVF0CxfmsC2bTXxul8W-6pNMd9/exec';
+        
         const SERVICE_KEYS = [
             "Ведущий", "Чайханщик", "Уборщик", "Закупщик", "Спикерхантер",
             "ПБУ", "ПГО", "ПСО", "Литком", "КАЗНАЧЕй", "ПРЕДСЕДАТЕЛь",
@@ -192,28 +300,34 @@
         ];
         const DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
-        let servicesData = {};
-        let dayTiles = [];
-        let notices = [];
+        let servicesData = {}; // { "Ведущий Пн": { "2026-09-05": "Анна", ... } }
+        let dayTiles = [];     // [ { date: "четверг 12.09", report: "..." } ]
+        let notices = [];      // [ { date: "...", text: "..." } ]
         let openRoles = {};
         let isUnlocked = false;
 
+        // ================================================
+        // 2. ЛОКАЛЬНОЕ ХРАНЕНИЕ
+        // ================================================
         function loadLocalData() {
             try {
-                const s = localStorage.getItem('mir_services_backup');
+                const s = localStorage.getItem('mir_thursday_services');
                 if (s) servicesData = JSON.parse(s);
-                const t = localStorage.getItem('mir_daytiles_backup');
+                const t = localStorage.getItem('mir_thursday_tiles');
                 if (t) dayTiles = JSON.parse(t);
-                const n = localStorage.getItem('mir_notices_backup');
+                const n = localStorage.getItem('mir_thursday_notices');
                 if (n) notices = JSON.parse(n);
             } catch(e) {}
         }
         function saveLocalData() {
-            localStorage.setItem('mir_services_backup', JSON.stringify(servicesData));
-            localStorage.setItem('mir_daytiles_backup', JSON.stringify(dayTiles));
-            localStorage.setItem('mir_notices_backup', JSON.stringify(notices));
+            localStorage.setItem('mir_thursday_services', JSON.stringify(servicesData));
+            localStorage.setItem('mir_thursday_tiles', JSON.stringify(dayTiles));
+            localStorage.setItem('mir_thursday_notices', JSON.stringify(notices));
         }
 
+        // ================================================
+        // 3. ДАТЫ И РЕНДЕР ТАБЛИЦЫ
+        // ================================================
         function getThursdays() {
             const now = new Date();
             let startDate = new Date(2026, 7, 6); 
@@ -262,23 +376,7 @@
                     let isFree = (value === '—');
                     const cls = isFree ? 'cell-free' : 'cell-occupied';
 
-                    if (isUnlocked) {
-                        bodyHtml += `<td class="editable-cell">
-                            <select data-role="${key}" data-date="${full}">
-                                <option value="—" ${value === '—' ? 'selected' : ''}>—</option>
-                                <option value="П" class="status-P" ${value === 'П' ? 'selected' : ''}>П (Присутствовал)</option>
-                                <option value="О" class="status-O" ${value === 'О' ? 'selected' : ''}>О (Отсутствовал)</option>
-                                <option value="У" class="status-U" ${value === 'У' ? 'selected' : ''}>У (Уважительная)</option>
-                            </select>
-                        </td>`;
-                    } else {
-                        let displayValue = value;
-                        if (value === 'П') displayValue = '✅ П';
-                        else if (value === 'О') displayValue = '❌ О';
-                        else if (value === 'У') displayValue = '⚠️ У';
-                        
-                        bodyHtml += `<td><span class="${cls}">${displayValue}</span></td>`;
-                    }
+                    bodyHtml += `<td><span class="${cls}">${value}</span></td>`;
                 });
                 bodyHtml += '</tr>';
 
@@ -294,40 +392,13 @@
                             let value = servicesData[rowKey]?.[full] || '—';
                             let isFree = (value === '—');
                             const cls = isFree ? 'cell-free' : 'cell-occupied';
-
-                            if (isUnlocked) {
-                                bodyHtml += `<td class="editable-cell">
-                                    <select data-role="${rowKey}" data-date="${full}">
-                                        <option value="—" ${value === '—' ? 'selected' : ''}>—</option>
-                                        <option value="П" class="status-P" ${value === 'П' ? 'selected' : ''}>П (Присутствовал)</option>
-                                        <option value="О" class="status-O" ${value === 'О' ? 'selected' : ''}>О (Отсутствовал)</option>
-                                        <option value="У" class="status-U" ${value === 'У' ? 'selected' : ''}>У (Уважительная)</option>
-                                    </select>
-                                </td>`;
-                            } else {
-                                let displayValue = value;
-                                if (value === 'П') displayValue = '✅ П';
-                                else if (value === 'О') displayValue = '❌ О';
-                                else if (value === 'У') displayValue = '⚠️ У';
-                                bodyHtml += `<td><span class="${cls}">${displayValue}</span></td>`;
-                            }
+                            bodyHtml += `<td><span class="${cls}">${value}</span></td>`;
                         });
                         bodyHtml += '</tr>';
                     });
                 }
             });
             tbody.innerHTML = bodyHtml;
-
-            document.querySelectorAll('.editable-cell select').forEach(select => {
-                select.addEventListener('change', function() {
-                    const role = this.dataset.role;
-                    const date = this.dataset.date;
-                    const value = this.value;
-                    if (!servicesData[role]) servicesData[role] = {};
-                    servicesData[role][date] = value;
-                    saveLocalData();
-                });
-            });
 
             document.querySelectorAll('.clickable-header').forEach(td => {
                 td.addEventListener('click', function() {
@@ -349,6 +420,9 @@
             }, 100);
         }
 
+        // ================================================
+        // 4. ПЛИТКИ И ЗАМЕТКИ
+        // ================================================
         function renderDayTiles() {
             const container = document.getElementById('dayTilesContainer');
             if (!dayTiles.length) {
@@ -413,74 +487,220 @@
             renderNotices();
         }
 
-        const lockBtn = document.getElementById('lockBtn');
-        const adminActions = document.getElementById('adminActions');
+        // ================================================
+        // 5. ОБЛАЧНОЕ СОХРАНЕНИЕ (КАК В ВАШЕМ КОДЕ)
+        // ================================================
+        function showToast(message, isError = false) {
+            let toast = document.getElementById('toastMsg');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toastMsg';
+                toast.style.cssText = 'position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:#333; color:#ffd966; padding:12px 24px; border-radius:40px; z-index:99999; border:2px solid #ffd966; font-size:14px; white-space:nowrap;';
+                document.body.appendChild(toast);
+            }
+            toast.style.background = isError ? '#8B0000' : '#1e7a4a';
+            toast.innerText = message;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 3000);
+        }
 
-        lockBtn.addEventListener('click', function() {
-            if (!isUnlocked) {
-                const pass = prompt("Введите код доступа для редактирования:");
-                if (pass === ADMIN_PASSWORD) {
-                    isUnlocked = true;
-                    lockBtn.innerHTML = "🔓 Редактирование открыто";
-                    lockBtn.classList.add('unlocked');
-                    adminActions.classList.add('active');
-                    renderTable();
+        function showLoading(show) {
+            let overlay = document.getElementById('loadingOverlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'loadingOverlay';
+                overlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:50000;';
+                overlay.innerHTML = '<div class="spinner" style="width:50px;height:50px;border:5px solid #ffd966;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite;"></div>';
+                const style = document.createElement('style');
+                style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+                document.head.appendChild(style);
+                document.body.appendChild(overlay);
+            }
+            overlay.classList.toggle('active', show);
+        }
+
+        // ЗАГРУЗКА ИЗ ОБЛАКА (JSONP)
+        function loadFromCloud() {
+            const callbackName = 'jsonp_callback_' + Date.now();
+            window[callbackName] = function (data) {
+                delete window[callbackName];
+                if (document.body.contains(script)) document.body.removeChild(script);
+                // Ключ для четвергов: 'thursday_data'
+                if (data && data.thursday_data) {
+                    const d = data.thursday_data;
+                    if (d.services) servicesData = d.services;
+                    if (d.dayTiles) dayTiles = d.dayTiles;
+                    if (d.notices) notices = d.notices;
+                    saveLocalData();
+                    showToast('✅ Данные четвергов загружены из облака');
                 } else {
-                    alert("Неверный код!");
+                    showToast('ℹ️ В облаке нет данных по четвергам (используется локальное)', true);
                 }
-            } else {
+                showLoading(false);
+                refreshAll();
+            };
+            const script = document.createElement('script');
+            script.src = `${SCRIPT_URL}?callback=${callbackName}`;
+            script.onerror = function () {
+                delete window[callbackName];
+                if (document.body.contains(script)) document.body.removeChild(script);
+                showToast('⚠️ Не удалось загрузить из облака, используются локальные данные', true);
+                showLoading(false);
+                refreshAll();
+            };
+            document.body.appendChild(script);
+        }
+
+        // СОХРАНЕНИЕ В ОБЛАКО (POST)
+        function saveToCloud() {
+            showLoading(true);
+            // Формируем пакет для четвергов
+            const saveData = {
+                type: 'thursday_data',
+                thursday_data: {
+                    services: servicesData,
+                    dayTiles: dayTiles,
+                    notices: notices
+                }
+            };
+            
+            // Отправка как в вашем основном коде
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(saveData),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(() => {
+                saveLocalData();
+                showLoading(false);
+                showToast('✅ Данные четвергов сохранены в облако!');
+            }).catch(() => {
+                saveLocalData();
+                showLoading(false);
+                showToast('❌ Ошибка отправки, данные сохранены локально', true);
+            });
+        }
+
+        // ================================================
+        // 6. АДМИН ПАНЕЛЬ И РЕЖИМ РЕДАКТИРОВАНИЯ
+        // ================================================
+        function setupAdminPanel() {
+            const lockBtn = document.getElementById('lockBtn');
+            const modal = document.getElementById('passwordModal');
+            const submitBtn = document.getElementById('submitPassword');
+            const closeBtn = document.getElementById('closePasswordModal');
+            const passwordInput = document.getElementById('passwordInput');
+            const errorDiv = document.getElementById('passwordError');
+            const adminPanel = document.getElementById('adminPanel');
+
+            function openModal() { modal.classList.add('active'); passwordInput.value = ''; errorDiv.innerHTML = ''; passwordInput.focus(); }
+            function closeModal() { modal.classList.remove('active'); }
+            function checkPassword() {
+                if (passwordInput.value === ADMIN_PASSWORD) {
+                    closeModal();
+                    adminPanel.classList.add('visible');
+                    showToast('🔓 Добро пожаловать!');
+                } else {
+                    errorDiv.innerHTML = '❌ Неверный пароль!';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+            lockBtn.onclick = openModal;
+            submitBtn.onclick = checkPassword;
+            closeBtn.onclick = closeModal;
+            passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPassword(); });
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+            // Режим редактирования (открывает списки выбора в таблице)
+            document.getElementById('enableEditBtn').onclick = function() {
+                isUnlocked = true;
+                document.getElementById('enableEditBtn').style.display = 'none';
+                document.getElementById('disableEditBtn').style.display = 'inline-block';
+                document.getElementById('editModeStatus').innerHTML = '✏️ Режим редактирования: ВКЛЮЧЕН (кликайте по ячейкам)';
+                renderTable(); // Перерисовка с селектами
+                showToast('✏️ Режим редактирования включен!');
+            };
+            document.getElementById('disableEditBtn').onclick = function() {
                 isUnlocked = false;
-                lockBtn.innerHTML = "🔒 Редактировать";
-                lockBtn.classList.remove('unlocked');
-                adminActions.classList.remove('active');
-                renderTable();
-            }
-        });
+                document.getElementById('enableEditBtn').style.display = 'inline-block';
+                document.getElementById('disableEditBtn').style.display = 'none';
+                document.getElementById('editModeStatus').innerHTML = '⚙️ Режим редактирования: ВЫКЛ';
+                renderTable(); // Перерисовка в режим просмотра
+                showToast('🔒 Режим редактирования выключен');
+            };
+            document.getElementById('saveDataBtn').onclick = function() {
+                saveToCloud();
+            };
+            document.getElementById('resetDataBtn').onclick = function() {
+                if (confirm('⚠️ Это удалит ВСЕ данные по четвергам. Продолжить?')) {
+                    servicesData = {}; dayTiles = []; notices = [];
+                    saveLocalData();
+                    // Пытаемся стереть и в облаке
+                    fetch(SCRIPT_URL, {
+                        method: 'POST', mode: 'no-cors',
+                        body: JSON.stringify({ type: 'thursday_data', thursday_data: { services: {}, dayTiles: [], notices: [] } }),
+                        headers: { 'Content-Type': 'application/json' }
+                    }).finally(() => {
+                        showToast('🔄 Данные сброшены');
+                        refreshAll();
+                    });
+                }
+            };
+        }
 
-        document.getElementById('saveCloudBtn').addEventListener('click', async function() {
-            alert("Сохранение в облако отключено на GitHub Pages для безопасности токена.\nЧтобы использовать облако, скачайте этот файл и запустите его локально двойным кликом.");
-        });
+        // ================================================
+        // 7. МОДАЛКИ (Добавление дня)
+        // ================================================
+        function setupModals() {
+            const modal = document.getElementById('dayModal');
+            document.getElementById('addDayBtn').addEventListener('click', function() {
+                document.getElementById('modalDayInput').value = '';
+                document.getElementById('modalTextInput').value = '';
+                document.getElementById('modalTitle').innerText = '📅 Добавить день-плитку';
+                modal.classList.add('active');
+            });
+            document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('active'));
+            modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('active'); });
+            document.getElementById('modalSaveBtn').addEventListener('click', function() {
+                const date = document.getElementById('modalDayInput').value.trim();
+                const text = document.getElementById('modalTextInput').value.trim();
+                if (!date) { alert('Введите дату'); return; }
+                if (!text) { alert('Введите текст отчета'); return; }
+                dayTiles.push({ date, report: text });
+                saveLocalData();
+                renderDayTiles();
+                modal.classList.remove('active');
+            });
 
-        document.getElementById('resetLocalBtn').addEventListener('click', function() {
-            if(confirm("Вы уверены, что хотите очистить все локальные данные?")) {
-                localStorage.removeItem('mir_services_backup');
-                localStorage.removeItem('mir_daytiles_backup');
-                localStorage.removeItem('mir_notices_backup');
-                servicesData = {}; dayTiles = []; notices = [];
-                renderTable(); renderDayTiles(); renderNotices();
-                alert("Локальные данные очищены.");
-            }
-        });
+            document.getElementById('reportCloseBtn').addEventListener('click', function() {
+                document.getElementById('reportModal').classList.remove('active');
+            });
+            document.getElementById('reportModal').addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+        }
 
-        const modal = document.getElementById('dayModal');
-        document.getElementById('addDayBtn').addEventListener('click', function() {
-            document.getElementById('modalDayInput').value = '';
-            document.getElementById('modalTextInput').value = '';
-            modal.classList.add('active');
-        });
-        document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('active'));
-        modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('active'); });
-        document.getElementById('modalSaveBtn').addEventListener('click', function() {
-            const date = document.getElementById('modalDayInput').value.trim();
-            const text = document.getElementById('modalTextInput').value.trim();
-            if (!date) { alert('Введите дату'); return; }
-            if (!text) { alert('Введите текст отчета'); return; }
-            dayTiles.push({ date, report: text });
+        // ================================================
+        // 8. ОБРАБОТЧИКИ ДЛЯ РЕДАКТИРОВАНИЯ
+        // ================================================
+        window.updateServiceData = function(selectElement) {
+            const role = selectElement.dataset.role;
+            const date = selectElement.dataset.date;
+            const value = selectElement.value;
+            if (!servicesData[role]) servicesData[role] = {};
+            servicesData[role][date] = value;
             saveLocalData();
-            renderDayTiles();
-            modal.classList.remove('active');
-        });
+        };
 
-        document.getElementById('reportCloseBtn').addEventListener('click', function() {
-            document.getElementById('reportModal').classList.remove('active');
-        });
-        document.getElementById('reportModal').addEventListener('click', function(e) {
-            if (e.target === this) this.classList.remove('active');
-        });
-
-        loadLocalData(); 
-        // loadFromGitHub отключена, работает только локально
-        refreshAll(); 
+        // ================================================
+        // 9. ИНИЦИАЛИЗАЦИЯ
+        // ================================================
+        loadLocalData(); // Сначала локальные
+        refreshAll();    // Отрисовать
+        setupAdminPanel();
+        setupModals();
+        loadFromCloud(); // Потом догрузить из облака (не сломает локальные)
     })();
 </script>
 
