@@ -6,7 +6,7 @@
         const REPO_OWNER = "prudexxx";
         const REPO_NAME = "otchet";
         // ⚠️ ЗАМЕНИТЕ ЭТОТ ТЕКСТ НА ВАШ НОВЫЙ ТОКЕН (внутри кавычек)
-        const GITHUB_TOKEN = "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"; 
+        const GITHUB_TOKEN = "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"; 
         const DATA_FILE_PATH = "data.json";
         // ============================================
 
