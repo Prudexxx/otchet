@@ -1,3 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -78,6 +99,27 @@
         .sub-row .cell-free { background: #1a5a3a; font-size: 12px; padding: 4px 6px; min-width: 30px; }
         .sub-row .cell-occupied { font-size: 12px; }
 
+        /* Стили для селектов (режим редактирования) */
+        .edit-cell-select {
+            width: 100%;
+            padding: 6px 4px;
+            border-radius: 12px;
+            border: 2px solid #ffd966;
+            background: #0f1a24;
+            color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+        }
+        .edit-cell-select option { background: #1a2a3a; color: #fff; }
+
+        /* Стили для П/О/У в режиме просмотра */
+        .status-P { color: #4CAF50; font-weight: bold; }
+        .status-O { color: #f44336; font-weight: bold; }
+        .status-U { color: #ff9800; font-weight: bold; }
+
         .btn-group { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin: 24px 0 18px; }
         .btn {
             background: linear-gradient(45deg, #ffb347, #ff8c00); border: none; padding: 14px 32px;
@@ -90,7 +132,6 @@
         .btn-secondary { background: linear-gradient(45deg, #4a6fa5, #2c4a7a); color: #fff; box-shadow: 0 8px 20px rgba(42, 85, 150, 0.3); }
         .btn-secondary:hover { box-shadow: 0 12px 28px rgba(42, 85, 150, 0.5); }
 
-        /* Доска заметок */
         .notice-board { margin-top: 30px; border-top: 2px solid rgba(255, 217, 102, 0.2); padding-top: 24px; }
         .notice-board h2 { color: #ffd966; font-size: 22px; margin-bottom: 16px; text-align: center; }
         .notice-list { display: flex; flex-direction: column; gap: 12px; max-width: 900px; margin: 0 auto; }
@@ -129,64 +170,24 @@
         .day-tile:hover { border-color: #ffd966; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(255, 217, 102, 0.2); }
         .day-tile .small-date { font-size: 11px; color: #aaa; font-weight: normal; }
 
-        /* ===== АДМИН ПАНЕЛЬ (как в вашем коде) ===== */
-        .central-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 550px;
-            margin: 20px auto 0;
-        }
-        .lock-button {
-            background: radial-gradient(circle at 30% 25%, #f6e7c5, #deb887);
-            border: none;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-        }
+        /* АДМИН ПАНЕЛЬ */
+        .central-wrapper { display: flex; flex-direction: column; align-items: center; max-width: 550px; margin: 20px auto 0; }
+        .lock-button { background: radial-gradient(circle at 30% 25%, #f6e7c5, #deb887); border: none; width: 100px; height: 100px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 20px auto; }
         .lock-svg { width: 50px; height: 50px; }
-        .info-panel {
-            background: rgba(255, 248, 225, 0.95);
-            border-radius: 42px;
-            padding: 20px;
-            width: 100%;
-            text-align: center;
-            display: none;
-        }
+        .info-panel { background: rgba(255, 248, 225, 0.95); border-radius: 42px; padding: 20px; width: 100%; text-align: center; display: none; }
         .info-panel.visible { display: block; }
         .info-title { font-size: 24px; color: #7a5c2e; margin-bottom: 15px; }
-        .edit-btn {
-            background: #d4af37;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 8px;
-        }
+        .edit-btn { background: #d4af37; border: none; padding: 12px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; margin: 8px; }
         .edit-btn.danger { background: #f44336; color: white; }
         .edit-btn.success { background: #4CAF50; color: white; }
         .edit-status { margin-top: 15px; padding: 10px; background: #333; border-radius: 30px; color: #ffd966; }
         .sync-status { font-size: 12px; margin-top: 10px; color: #666; }
 
-        .modal-password {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center; z-index: 5000;
-        }
+        .modal-password { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center; z-index: 5000; }
         .modal-password.active { display: flex; }
-        .modal-password-card {
-            background: #fef7e0; border-radius: 48px; padding: 30px; width: 90%; max-width: 350px; text-align: center;
-        }
+        .modal-password-card { background: #fef7e0; border-radius: 48px; padding: 30px; width: 90%; max-width: 350px; text-align: center; }
         .modal-password-card h3 { color: #7a5c2e; margin-bottom: 20px; }
-        .password-input {
-            width: 100%; padding: 14px; border: 2px solid #e4c37b; border-radius: 60px; text-align: center; font-size: 18px; margin: 15px 0;
-        }
+        .password-input { width: 100%; padding: 14px; border: 2px solid #e4c37b; border-radius: 60px; text-align: center; font-size: 18px; margin: 15px 0; }
         .modal-buttons { display: flex; gap: 10px; justify-content: center; }
         .modal-btn { padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; font-weight: bold; }
         .modal-btn.primary { background: #d4af37; }
@@ -198,13 +199,13 @@
 </head>
 <body>
 
+
 <div class="container">
     <div class="header-actions">
-        <h1>📋 Служения — четверги</h1>
+         <h1>📋 Посещаемость рабочего вечернего собрания</h1>
         <a href="index.html" class="back-link">← На главную</a>
     </div>
 
-    <!-- Основная таблица -->
     <div class="table-wrap">
         <table id="serviceTable">
             <thead id="tableHead"><tr><th>Служение</th></tr></thead>
@@ -212,21 +213,16 @@
         </table>
     </div>
 
-    <!-- Кнопка добавления дня -->
-    <div class="btn-group">
-        <button class="btn" id="addDayBtn">➕ Добавить день</button>
-    </div>
-
-    <!-- Доска заметок -->
+   
     <div class="notice-board">
-        <h2>📌 Заметки по дням</h2>
+        <h2>📌 Отчеты рабочих собраний</h2>
         <div class="day-tiles-container" id="dayTilesContainer"></div>
         <div style="margin-top: 20px;">
             <div class="notice-list" id="noticeList"></div>
         </div>
     </div>
 
-    <!-- ===== АДМИН ПАНЕЛЬ (ЗАМОЧЕК) ===== -->
+
     <div class="central-wrapper">
         <button class="lock-button" id="lockBtn">
             <svg class="lock-svg" viewBox="0 0 24 24" fill="none">
@@ -236,17 +232,19 @@
         </button>
         <div id="adminPanel" class="info-panel">
             <div class="info-title">🗝️ Панель управления</div>
+             <div class="btn-group">
+        <button class="btn" id="addDayBtn">➕ Добавить день</button>
+    </div>
+    
             <button id="enableEditBtn" class="edit-btn success">✏️ Включить режим редактирования</button>
             <button id="disableEditBtn" class="edit-btn danger" style="display:none">🔒 Выключить режим</button>
             <button id="saveDataBtn" class="edit-btn">💾 Сохранить изменения в облако</button>
-            <button id="resetDataBtn" class="edit-btn">🔄 Сбросить всё</button>
             <div id="editModeStatus" class="edit-status">⚙️ Режим редактирования: ВЫКЛ</div>
             <div id="syncStatus" class="sync-status"></div>
         </div>
     </div>
 </div>
 
-<!-- Модалка пароля -->
 <div id="passwordModal" class="modal-password">
     <div class="modal-password-card">
         <h3>🔒 Введите пароль</h3>
@@ -259,10 +257,9 @@
     </div>
 </div>
 
-<!-- Модалка добавления дня -->
 <div class="modal-overlay" id="dayModal">
     <div class="modal-card">
-        <h3 id="modalTitle">📅 Добавить день-плитку</h3>
+        <h3 id="modalTitle">📅 Добавить / Редактировать день-плитку</h3>
         <label for="modalDayInput">Дата (день недели или число)</label>
         <input type="text" id="modalDayInput" placeholder="например: четверг 12.09" />
         <label for="modalTextInput">Текст отчета по этому дню</label>
@@ -274,7 +271,6 @@
     </div>
 </div>
 
-<!-- Модалка просмотра отчета -->
 <div class="report-modal-overlay" id="reportModal">
     <div class="report-modal-card">
         <button class="report-close-btn" id="reportCloseBtn">✕</button>
@@ -285,30 +281,37 @@
 </div>
 
 <script>
-    (function() {
-        // ================================================
-        // 1. КОНСТАНТЫ И ИНИЦИАЛИЗАЦИЯ
-        // ================================================
-        const ADMIN_PASSWORD = "1234"; // Пароль для админки
-        // ТА ЖЕ ССЫЛКА, ЧТО И В ВАШЕМ ОСНОВНОМ КОДЕ!
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTIvFS5UTEypdqxN8OXw4pke0DbAiSVmfizE1CVegVF0CxfmsC2bTXxul8W-6pNMd9/exec';
+    (function() {   
         
-        const SERVICE_KEYS = [
-            "Ведущий", "Чайханщик", "Уборщик", "Закупщик", "Спикерхантер",
-            "ПБУ", "ПГО", "ПСО", "Литком", "КАЗНАЧЕй", "ПРЕДСЕДАТЕЛь",
-            "замПГО", "РС", "Водовоз", "Админ сайта"
+        const BASE_SERVICE_KEYS = ["Ведущий", "Чайханщик", "Уборщик"];
+        const OTHER_SERVICE_KEYS = [
+            "Закупщик", "Спикерхантер", "ПБУ", "ПГО", "ПСО", "Литком", 
+            "КАЗНАЧЕй", "ПРЕДСЕДАТЕЛь", "замПГО", "РС", "Водовоз", "Админ сайта"
         ];
         const DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
-        let servicesData = {}; // { "Ведущий Пн": { "2026-09-05": "Анна", ... } }
-        let dayTiles = [];     // [ { date: "четверг 12.09", report: "..." } ]
-        let notices = [];      // [ { date: "...", text: "..." } ]
-        let openRoles = {};
+        let servicesData = {};
+        let dayTiles = [];
+        let notices = [];
         let isUnlocked = false;
+        let currentEditTileIndex = -1; 
+        
+        // Состояние открытых родительских кнопок. 
+        // Если 'Ведущий' открыт, показываем Ведущий Вт...Вс.
+        let openParents = {};
 
-        // ================================================
-        // 2. ЛОКАЛЬНОЕ ХРАНЕНИЕ
-        // ================================================
+        // Функция для получения полного списка всех ключей строк
+        function getAllServiceKeys() {
+            let list = [];
+            BASE_SERVICE_KEYS.forEach(role => {
+                DAYS.forEach(day => {
+                    list.push(`${role} ${day}`);
+                });
+            });
+            list = list.concat(OTHER_SERVICE_KEYS);
+            return list;
+        }
+
         function loadLocalData() {
             try {
                 const s = localStorage.getItem('mir_thursday_services');
@@ -325,9 +328,6 @@
             localStorage.setItem('mir_thursday_notices', JSON.stringify(notices));
         }
 
-        // ================================================
-        // 3. ДАТЫ И РЕНДЕР ТАБЛИЦЫ
-        // ================================================
         function getThursdays() {
             const now = new Date();
             let startDate = new Date(2026, 7, 6); 
@@ -350,6 +350,7 @@
             const thead = document.getElementById('tableHead');
             const tbody = document.getElementById('tableBody');
             const thursdays = getThursdays();
+            const allKeys = getAllServiceKeys();
 
             if (thursdays.length === 0) {
                 thead.innerHTML = '<tr><th>Служение</th></tr>';
@@ -364,11 +365,54 @@
 
             let bodyHtml = '';
             
-            SERVICE_KEYS.forEach(key => {
-                const isClickable = (key === "Ведущий" || key === "Чайханщик" || key === "Уборщик");
-                const classAttr = isClickable ? 'class="clickable-header" data-role="' + key + '"' : '';
-                
-                bodyHtml += `<tr><td ${classAttr}>${key}</td>`;
+            allKeys.forEach(key => {
+                // Проверяем, является ли эта строка "родительской" и нужно ли её скрывать/показывать
+                let isHidden = false;
+                let isParent = false;
+                let parentRole = "";
+
+                // Если это одна из наших трех должностей, проверяем день
+                if (BASE_SERVICE_KEYS.some(r => key.startsWith(r + " "))) {
+                    const parts = key.split(" ");
+                    const role = parts[0];
+                    const day = parts[1];
+
+                    if (day === "Пн") {
+                        isParent = true;
+                        parentRole = role;
+                    } else {
+                        // Это Вт, Ср, Чт... Проверяем, открыт ли родитель
+                        if (!openParents[role]) {
+                            isHidden = true; // Скрываем, если родитель не открыт
+                        }
+                    }
+                }
+
+                // Формируем строку
+                if (isHidden) {
+                    // Скрываем строку полностью (просто не добавляем её в HTML, если она не Вт-Вс и не открыта)
+                    // Мы должны её добавить, но с классом .sub-row. 
+                    // Но в нашей логике они идут подряд, поэтому лучше использовать CSS классы.
+                }
+
+                // Определяем класс для строки
+                let rowClass = "";
+                if (isParent) {
+                    rowClass = 'clickable-header'; // Кликабельная строка-заголовок
+                } else if (!BASE_SERVICE_KEYS.some(r => key.startsWith(r + " "))) {
+                    // Обычная строка (Закупщик и т.д.) - без класса
+                    rowClass = "";
+                } else {
+                    // Это скрываемые дни (Вт, Ср...)
+                    if (isHidden) {
+                        rowClass = 'sub-row'; // Скрыты по умолчанию
+                    } else {
+                        rowClass = 'sub-row visible'; // Показаны, если родитель открыт
+                    }
+                }
+
+                // Отрисовка строки
+                bodyHtml += `<tr class="${rowClass}" data-role="${isParent ? key : ''}"><td ${isParent ? 'class="clickable-header"' : ''}>${key}</td>`;
 
                 thursdays.forEach(t => {
                     const full = t.full;
@@ -376,34 +420,56 @@
                     let isFree = (value === '—');
                     const cls = isFree ? 'cell-free' : 'cell-occupied';
 
-                    bodyHtml += `<td><span class="${cls}">${value}</span></td>`;
+                    if (isUnlocked) {
+                        bodyHtml += `<td>
+                            <select class="edit-cell-select" data-role="${key}" data-date="${full}">
+                                <option value="—" ${value === '—' ? 'selected' : ''}>—</option>
+                                <option value="П" ${value === 'П' ? 'selected' : ''}>П (Присутствовал)</option>
+                                <option value="О" ${value === 'О' ? 'selected' : ''}>О (Отсутствовал)</option>
+                                <option value="У" ${value === 'У' ? 'selected' : ''}>У (Уважительная)</option>
+                            </select>
+                        </td>`;
+                    } else {
+                        let displayValue = value;
+                        let extraClass = '';
+                        if (value === 'П') { displayValue = '✅ П'; extraClass = 'status-P'; }
+                        else if (value === 'О') { displayValue = '❌ О'; extraClass = 'status-O'; }
+                        else if (value === 'У') { displayValue = '⚠️ У'; extraClass = 'status-U'; }
+                        
+                        if (isFree) {
+                            bodyHtml += `<td><span class="cell-free">${displayValue}</span></td>`;
+                        } else {
+                            bodyHtml += `<td><span class="${extraClass}">${displayValue}</span></td>`;
+                        }
+                    }
                 });
                 bodyHtml += '</tr>';
-
-                if (isClickable) {
-                    const isOpen = openRoles[key] || false;
-                    DAYS.forEach(day => {
-                        const rowKey = `${key} ${day}`;
-                        const visibilityClass = isOpen ? 'visible' : '';
-                        bodyHtml += `<tr class="sub-row ${visibilityClass}"><td>${rowKey}</td>`;
-
-                        thursdays.forEach(t => {
-                            const full = t.full;
-                            let value = servicesData[rowKey]?.[full] || '—';
-                            let isFree = (value === '—');
-                            const cls = isFree ? 'cell-free' : 'cell-occupied';
-                            bodyHtml += `<td><span class="${cls}">${value}</span></td>`;
-                        });
-                        bodyHtml += '</tr>';
-                    });
-                }
             });
             tbody.innerHTML = bodyHtml;
 
-            document.querySelectorAll('.clickable-header').forEach(td => {
-                td.addEventListener('click', function() {
+            // Обработчики для селектов в режиме редактирования
+            document.querySelectorAll('.edit-cell-select').forEach(select => {
+                select.addEventListener('change', function() {
                     const role = this.dataset.role;
-                    openRoles[role] = !openRoles[role];
+                    const date = this.dataset.date;
+                    const value = this.value;
+                    if (!servicesData[role]) servicesData[role] = {};
+                    servicesData[role][date] = value;
+                    saveLocalData();
+                });
+            });
+
+            // Обработчики кликов по родительским заголовкам (Ведущий Пн и т.д.)
+            document.querySelectorAll('tr.clickable-header td:first-child').forEach(td => {
+                td.addEventListener('click', function() {
+                    const row = this.parentElement;
+                    const roleText = this.innerText.trim(); // "Ведущий Пн"
+                    const roleName = roleText.split(" ")[0]; // "Ведущий"
+                    
+                    // Переключаем состояние открытия
+                    openParents[roleName] = !openParents[roleName];
+                    
+                    // Перерисовываем таблицу
                     renderTable(); 
                 });
             });
@@ -420,9 +486,6 @@
             }, 100);
         }
 
-        // ================================================
-        // 4. ПЛИТКИ И ЗАМЕТКИ
-        // ================================================
         function renderDayTiles() {
             const container = document.getElementById('dayTilesContainer');
             if (!dayTiles.length) {
@@ -443,9 +506,7 @@
                 tile.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
                     if (!isNaN(idx) && dayTiles[idx]) {
-                        document.getElementById('reportDate').innerText = dayTiles[idx].date || '—';
-                        document.getElementById('reportContent').innerText = dayTiles[idx].report || 'Нет текста';
-                        document.getElementById('reportModal').classList.add('active');
+                        openEditTileModal(idx);
                     }
                 });
             });
@@ -487,9 +548,6 @@
             renderNotices();
         }
 
-        // ================================================
-        // 5. ОБЛАЧНОЕ СОХРАНЕНИЕ (КАК В ВАШЕМ КОДЕ)
-        // ================================================
         function showToast(message, isError = false) {
             let toast = document.getElementById('toastMsg');
             if (!toast) {
@@ -519,13 +577,12 @@
             overlay.classList.toggle('active', show);
         }
 
-        // ЗАГРУЗКА ИЗ ОБЛАКА (JSONP)
         function loadFromCloud() {
+            showLoading(true);
             const callbackName = 'jsonp_callback_' + Date.now();
             window[callbackName] = function (data) {
                 delete window[callbackName];
                 if (document.body.contains(script)) document.body.removeChild(script);
-                // Ключ для четвергов: 'thursday_data'
                 if (data && data.thursday_data) {
                     const d = data.thursday_data;
                     if (d.services) servicesData = d.services;
@@ -551,10 +608,8 @@
             document.body.appendChild(script);
         }
 
-        // СОХРАНЕНИЕ В ОБЛАКО (POST)
         function saveToCloud() {
             showLoading(true);
-            // Формируем пакет для четвергов
             const saveData = {
                 type: 'thursday_data',
                 thursday_data: {
@@ -564,7 +619,6 @@
                 }
             };
             
-            // Отправка как в вашем основном коде
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -581,9 +635,6 @@
             });
         }
 
-        // ================================================
-        // 6. АДМИН ПАНЕЛЬ И РЕЖИМ РЕДАКТИРОВАНИЯ
-        // ================================================
         function setupAdminPanel() {
             const lockBtn = document.getElementById('lockBtn');
             const modal = document.getElementById('passwordModal');
@@ -612,65 +663,70 @@
             passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPassword(); });
             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-            // Режим редактирования (открывает списки выбора в таблице)
             document.getElementById('enableEditBtn').onclick = function() {
                 isUnlocked = true;
                 document.getElementById('enableEditBtn').style.display = 'none';
                 document.getElementById('disableEditBtn').style.display = 'inline-block';
-                document.getElementById('editModeStatus').innerHTML = '✏️ Режим редактирования: ВКЛЮЧЕН (кликайте по ячейкам)';
-                renderTable(); // Перерисовка с селектами
-                showToast('✏️ Режим редактирования включен!');
+                document.getElementById('editModeStatus').innerHTML = '✏️ Режим редактирования: ВКЛЮЧЕН';
+                renderTable();
+                showToast('✏️ Режим редактирования включен! Выберите П/О/У в ячейках');
             };
             document.getElementById('disableEditBtn').onclick = function() {
                 isUnlocked = false;
                 document.getElementById('enableEditBtn').style.display = 'inline-block';
                 document.getElementById('disableEditBtn').style.display = 'none';
                 document.getElementById('editModeStatus').innerHTML = '⚙️ Режим редактирования: ВЫКЛ';
-                renderTable(); // Перерисовка в режим просмотра
+                renderTable();
                 showToast('🔒 Режим редактирования выключен');
             };
             document.getElementById('saveDataBtn').onclick = function() {
                 saveToCloud();
             };
-            document.getElementById('resetDataBtn').onclick = function() {
-                if (confirm('⚠️ Это удалит ВСЕ данные по четвергам. Продолжить?')) {
-                    servicesData = {}; dayTiles = []; notices = [];
-                    saveLocalData();
-                    // Пытаемся стереть и в облаке
-                    fetch(SCRIPT_URL, {
-                        method: 'POST', mode: 'no-cors',
-                        body: JSON.stringify({ type: 'thursday_data', thursday_data: { services: {}, dayTiles: [], notices: [] } }),
-                        headers: { 'Content-Type': 'application/json' }
-                    }).finally(() => {
-                        showToast('🔄 Данные сброшены');
-                        refreshAll();
-                    });
-                }
-            };
         }
 
-        // ================================================
-        // 7. МОДАЛКИ (Добавление дня)
-        // ================================================
         function setupModals() {
             const modal = document.getElementById('dayModal');
-            document.getElementById('addDayBtn').addEventListener('click', function() {
-                document.getElementById('modalDayInput').value = '';
-                document.getElementById('modalTextInput').value = '';
-                document.getElementById('modalTitle').innerText = '📅 Добавить день-плитку';
+            const dayInput = document.getElementById('modalDayInput');
+            const textInput = document.getElementById('modalTextInput');
+            const modalTitle = document.getElementById('modalTitle');
+
+            function openAddModal() {
+                currentEditTileIndex = -1;
+                modalTitle.innerText = '📅 Добавить день-плитку';
+                dayInput.value = '';
+                textInput.value = '';
                 modal.classList.add('active');
-            });
+            }
+
+            window.openEditTileModal = function(index) {
+                currentEditTileIndex = index;
+                modalTitle.innerText = '✏️ Редактировать день-плитку';
+                dayInput.value = dayTiles[index].date || '';
+                textInput.value = dayTiles[index].report || '';
+                modal.classList.add('active');
+            };
+
+            document.getElementById('addDayBtn').addEventListener('click', openAddModal);
             document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('active'));
             modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('active'); });
+            
             document.getElementById('modalSaveBtn').addEventListener('click', function() {
-                const date = document.getElementById('modalDayInput').value.trim();
-                const text = document.getElementById('modalTextInput').value.trim();
+                const date = dayInput.value.trim();
+                const text = textInput.value.trim();
                 if (!date) { alert('Введите дату'); return; }
                 if (!text) { alert('Введите текст отчета'); return; }
-                dayTiles.push({ date, report: text });
+
+                if (currentEditTileIndex !== -1) {
+                    dayTiles[currentEditTileIndex].date = date;
+                    dayTiles[currentEditTileIndex].report = text;
+                } else {
+                    dayTiles.push({ date, report: text });
+                }
+                
                 saveLocalData();
                 renderDayTiles();
                 modal.classList.remove('active');
+                showToast(currentEditTileIndex !== -1 ? '✅ Заметка обновлена!' : '✅ Заметка добавлена!');
             });
 
             document.getElementById('reportCloseBtn').addEventListener('click', function() {
@@ -681,28 +737,13 @@
             });
         }
 
-        // ================================================
-        // 8. ОБРАБОТЧИКИ ДЛЯ РЕДАКТИРОВАНИЯ
-        // ================================================
-        window.updateServiceData = function(selectElement) {
-            const role = selectElement.dataset.role;
-            const date = selectElement.dataset.date;
-            const value = selectElement.value;
-            if (!servicesData[role]) servicesData[role] = {};
-            servicesData[role][date] = value;
-            saveLocalData();
-        };
-
-        // ================================================
-        // 9. ИНИЦИАЛИЗАЦИЯ
-        // ================================================
-        loadLocalData(); // Сначала локальные
-        refreshAll();    // Отрисовать
+        loadLocalData(); 
+        refreshAll();    
         setupAdminPanel();
         setupModals();
-        loadFromCloud(); // Потом догрузить из облака (не сломает локальные)
+        loadFromCloud(); 
     })();
 </script>
-
+<script src="on.js"></script>
 </body>
 </html>
